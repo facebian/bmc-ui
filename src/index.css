@@ -1,8 +1,16 @@
 @import 'tailwindcss';
+@tailwind utilities;
 
 @plugin "tailwindcss-animate";
 
 @custom-variant dark (&:is(.dark *));
+
+body {
+    button,
+    input {
+        cursor: pointer;
+    }
+}
 
 :root {
     --radius: 0.625rem;
@@ -118,4 +126,65 @@
     body {
         @apply bg-background text-foreground;
     }
+}
+
+/* Custom scrollbar styles */
+@layer utilities {
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 0; /* Hide the default scrollbar */
+    }
+
+    .custom-scrollbar {
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+        padding-right: 8px; /* Add some space for the custom scrollbar */
+    }
+}
+
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+
+    /* Для Firefox */
+  .scrollbar-custom {
+    scrollbar-width: thin;
+    scrollbar-color: #a1a1aa transparent;
+  }
+
+  /* Для Webkit-браузеров */
+  .scrollbar-custom::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    @apply bg-zinc-400 rounded-full border-2 border-solid border-transparent bg-clip-padding;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    @apply bg-zinc-500;
+  }
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #BFBFBF transparent;
+    scrollbar-arrow-color: #BFBFBF;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
 }

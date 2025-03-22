@@ -1,16 +1,19 @@
-import { X } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
+import { Separator } from '@radix-ui/react-separator'
+import { Button } from '../ui/button'
+import { Card, CardHeader, CardContent } from '../ui/card'
+import { Input } from '../ui/input'
+import { Label } from '../ui/label'
+import { Dispatch, SetStateAction } from 'react'
 
-const SignUpForm = () => {
+interface Props {
+    changeStep: Dispatch<SetStateAction<number>>
+}
+
+const SignInPreview = ({ changeStep }: Props) => {
     return (
-        <Card className="w-full max-w-md relative">
-            <button className="absolute right-4 top-4 text-gray-500 hover:text-gray-700">
-                <X size={20} />
-            </button>
+        <Card className="w-full max-w-lg relative border-0 shadow-none pt-0 pb-0">
             <CardHeader className="text-center pt-8 pb-4">
-                <h2 className="text-2xl font-bold">Sign Up to BeMyCoach</h2>
+                <h2 className="text-2xl font-bold">Sign In to BeMyCoach</h2>
             </CardHeader>
             <CardContent className="space-y-4">
                 <Button
@@ -76,30 +79,57 @@ const SignUpForm = () => {
                     Log In with Apple ID
                 </Button>
 
+                {/* Divider */}
                 <div className="relative">
                     <div className="absolute inset-0 flex items-center">
                         <Separator className="w-full" />
                     </div>
                     <div className="relative flex justify-center text-xs uppercase">
                         <span className="bg-background px-2 text-muted-foreground">
-                            or sign up with email
+                            or sign in with email
                         </span>
                     </div>
                 </div>
 
-                <Button className="w-full bg-gray-800 hover:bg-gray-700 text-white py-6">
-                    Continue with Email
-                </Button>
+                {/* Email Form */}
+                <div className="space-y-4">
+                    <div className="space-y-2">
+                        <Label htmlFor="name">Name</Label>
+                        <Input
+                            className="border-primary cursor-pointer"
+                            id="name"
+                            placeholder="Mike"
+                        />
+                    </div>
 
-                <div className="text-center text-sm">
-                    Already have an account?{' '}
-                    <a href="#" className="text-primary font-medium">
-                        Sign In
-                    </a>
+                    <div className="space-y-2">
+                        <Label htmlFor="email">Username or Email</Label>
+                        <Input
+                            id="email"
+                            className="border-primary cursor-pointer"
+                            type="email"
+                            placeholder="mikeanderson@gmail.com"
+                        />
+                    </div>
+
+                    <Button className="w-full text-white py-6 cursor-pointer">
+                        See your coach
+                    </Button>
+
+                    <div className="text-center text-sm">
+                        Don't have an account?{' '}
+                        <a
+                            href="#"
+                            onClick={() => changeStep((prev) => prev + 1)}
+                            className="text-primary font-medium"
+                        >
+                            Sign up
+                        </a>
+                    </div>
                 </div>
             </CardContent>
         </Card>
     )
 }
 
-export default SignUpForm
+export default SignInPreview

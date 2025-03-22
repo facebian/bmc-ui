@@ -1,14 +1,17 @@
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Separator } from '@/components/ui/separator'
+import { Button } from '../ui/button'
+import { Card, CardHeader, CardContent } from '../ui/card'
+import { Separator } from '../ui/separator'
+import { Dispatch, SetStateAction } from 'react'
 
-const SignInDialogContent = () => {
+interface Props {
+    changeStep: Dispatch<SetStateAction<number>>
+}
+
+const SignUnPreview = ({ changeStep }: Props) => {
     return (
-            <Card className="w-full max-w-md relative border-0 shadow-none pt-0 pb-0">
+            <Card className="w-full max-w-lg relative border-0 shadow-none pt-0 pb-0">
                 <CardHeader className="text-center pt-8 pb-4">
-                    <h2 className="text-2xl font-bold">Sign In to BeMyCoach</h2>
+                    <h2 className="text-2xl font-bold">Sign Up to BeMyCoach</h2>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <Button
@@ -74,44 +77,37 @@ const SignInDialogContent = () => {
                         Log In with Apple ID
                     </Button>
 
-                    {/* Divider */}
                     <div className="relative">
                         <div className="absolute inset-0 flex items-center">
                             <Separator className="w-full" />
                         </div>
                         <div className="relative flex justify-center text-xs uppercase">
                             <span className="bg-background px-2 text-muted-foreground">
-                                or sign in with email
+                                or sign up with email
                             </span>
                         </div>
                     </div>
 
-                    {/* Email Form */}
-                    <div className="space-y-4">
-                        <div className="space-y-2">
-                            <Label htmlFor="name">Name</Label>
-                            <Input id="name" placeholder="Mike" />
-                        </div>
+                    <Button
+                        className="w-full text-white py-6"
+                        onClick={() => changeStep((prev) => prev + 1)}
+                    >
+                        Continue with Email
+                    </Button>
 
-                        <div className="space-y-2">
-                            <Label htmlFor="email">Username or Email</Label>
-                            <Input id="email" type="email" placeholder="mikeanderson@gmail.com" />
-                        </div>
-
-                        <Button className="w-full bg-gray-800 hover:bg-gray-700 text-white py-6">
-                            See your coach
-                        </Button>
-
-                        <div className="text-center text-sm">
-                            Don't have an account?{' '}
-                            <a href="#" className="text-primary font-medium">
-                                Sign up
-                            </a>
-                        </div>
+                    <div className="text-center text-sm">
+                        Already have an account?{' '}
+                        <a
+                            onClick={() => changeStep((prev) => prev - 1)}
+                            href="#"
+                            className="text-primary font-medium"
+                        >
+                            Sign In
+                        </a>
                     </div>
                 </CardContent>
             </Card>
     )
 }
 
-export default SignInDialogContent
+export default SignUnPreview

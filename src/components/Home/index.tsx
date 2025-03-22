@@ -9,7 +9,7 @@ import { Link } from 'react-router'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs'
 import { howToUseData } from '@/mocks'
 import DialogComponent from '../DialogComponent'
-import SignInDialogContent from '../DialogComponent/SignInDialogContent'
+import SignInDialogContent from '../AuthFlow/AuthDialogContent'
 
 export default function Home() {
     return (
@@ -17,7 +17,7 @@ export default function Home() {
             <section className="w-full bg-gray-100 py-12">
                 <div className="container max-w-7xl mx-auto px-4">
                     <div className="flex justify-center mb-8">
-                        <Tabs defaultValue="account" className="w-[400px] p-0">
+                        <Tabs defaultValue="trainee" className="w-[400px] p-0">
                             <TabsList className="grid w-full grid-cols-2 bg-secondary h-[40px] p-0">
                                 <TabsTrigger
                                     className="data-[state=active]:bg-primary data-[state=active]:text-white bg-secondary cursor-pointer text-base"
