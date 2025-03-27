@@ -6,9 +6,26 @@
 @custom-variant dark (&:is(.dark *));
 
 body {
+    font-family: Manrope;
+    letter-spacing: 0%;
     button,
     input {
         cursor: pointer;
+    }
+
+    .secondary-light {
+        background-color: #F0F0F0;
+    }
+    .secondary-dark {
+        background-color: #BFBFBF;
+    }
+
+    .border-secondary {
+        border-color: #BFBFBF;
+    }
+
+    .custom-height {
+        height: 48px!important;
     }
 }
 
@@ -24,6 +41,7 @@ body {
     --primary-foreground: oklch(0.984 0.003 247.858);
     --secondary: oklch(90.97% 0 0);
     --secondary-foreground: oklch(0.208 0.042 265.755);
+    --secondary-light: oklch(95.51% 0 0);
     --muted: oklch(0.968 0.007 247.896);
     --muted-foreground: oklch(0.554 0.046 257.417);
     --accent: oklch(0.968 0.007 247.896);
@@ -58,6 +76,7 @@ body {
     --primary-foreground: oklch(0.208 0.042 265.755);
     --secondary: oklch(0.279 0.041 260.031);
     --secondary-foreground: oklch(0.984 0.003 247.858);
+    --secondary-light: oklch(48.81% 0.041 260.031);
     --muted: oklch(0.279 0.041 260.031);
     --muted-foreground: oklch(0.704 0.04 256.788);
     --accent: oklch(0.279 0.041 260.031);

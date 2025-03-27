@@ -10,8 +10,20 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs'
 import { howToUseData } from '@/mocks'
 import DialogComponent from '../DialogComponent'
 import SignInDialogContent from '../AuthFlow/AuthDialogContent'
+import { fetchUsers } from '@/features/Users/usersSlice'
+import { useEffect } from 'react'
+import { useAppDispatch, useAppSelector } from '@/app/hooks'
 
 export default function Home() {
+    const dispatch = useAppDispatch()
+    const { items } = useAppSelector((state) => state.users)
+
+    useEffect(() => {
+        dispatch(fetchUsers())
+    }, [dispatch])
+
+    console.log('items : >>', items)
+
     return (
         <div className="flex flex-col min-h-screen">
             <section className="w-full bg-gray-100 py-12">
@@ -47,9 +59,11 @@ export default function Home() {
                     <div className="flex justify-center">
                         <DialogComponent
                             trigger={
-                                <Button className="bg-primary px-8 py-4 cursor-pointer min-w-[356px] text-base min-h-14">
-                                    See your coach
-                                </Button>
+                                <Link to={'/search'}>
+                                    <Button className="bg-primary px-8 py-4 cursor-pointer min-w-[356px] text-base min-h-14">
+                                        See your coach
+                                    </Button>
+                                </Link>
                             }
                             content={<SignInDialogContent />}
                         />
